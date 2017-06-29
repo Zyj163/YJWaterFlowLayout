@@ -1,0 +1,6 @@
+framework module Pods_YJWaterFlowLayout_Example {
+  umbrella header "Pods-YJWaterFlowLayout_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

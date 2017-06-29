@@ -1,0 +1,731 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		14879B519E07BC4C33A3437117273D0B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */; };
+		18C02D6B3048A643325FAF49DF80440F /* YJWaterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D257D6F37AE92C22A75BFBD155FA6D42 /* YJWaterFlowLayout.swift */; };
+		1A1A9CD6D04B47A33FCDE0DB583AE180 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		268825DAE1125B347904679F3282442B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		8787FFDDC5EA0CAB0B97C9802A106CF2 /* Pods-YJWaterFlowLayout_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E26527579532B8CD6B8FBD4A91FEB53E /* Pods-YJWaterFlowLayout_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8C6A16D619C037F20A1F37A4C6A0930D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		95C78167AD3438AE228D56D8FEAA9489 /* Pods-YJWaterFlowLayout_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 53912E049792B977202C562F59A6EAD5 /* Pods-YJWaterFlowLayout_Example-dummy.m */; };
+		E24DE5DD96E78EDDA35D10B9826FCE29 /* YJWaterFlowLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CFF194B9B7A93E5AB100CBCC6A1662 /* YJWaterFlowLayout-dummy.m */; };
+		E259CCCED45D5D5E0B7158195066B699 /* Pods-YJWaterFlowLayout_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A5CD6A4028B798A4C8630409D758CF /* Pods-YJWaterFlowLayout_Tests-dummy.m */; };
+		E73F09937F54B35DCF3C1963E44426AF /* YJWaterFlowLayout-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 037A1AE4CFA001B7E2161D229225D3FA /* YJWaterFlowLayout-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F98C8D14AE8F10CF4018EC3286FD72D2 /* Pods-YJWaterFlowLayout_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C71602F708974C83CF2597F3797BD3F /* Pods-YJWaterFlowLayout_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3F4FBB4D7687C53EA250A5A7B64C03BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA7404C893CA86360662A128F68C1677;
+			remoteInfo = YJWaterFlowLayout;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		037A1AE4CFA001B7E2161D229225D3FA /* YJWaterFlowLayout-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YJWaterFlowLayout-umbrella.h"; sourceTree = "<group>"; };
+		0536343328456022244E8CC50461B9F1 /* Pods-YJWaterFlowLayout_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YJWaterFlowLayout_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		14E532D40F2EF4A5A530130A8C6BA961 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16B66738927C53C3BC1B18A9A41A3784 /* Pods-YJWaterFlowLayout_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-YJWaterFlowLayout_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		237FCCB1E56D0C639B657D48B45EDD12 /* Pods_YJWaterFlowLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_YJWaterFlowLayout_Tests.framework; path = "Pods-YJWaterFlowLayout_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FC6C8B74CB9D65A21E6C78168924E48 /* Pods-YJWaterFlowLayout_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YJWaterFlowLayout_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		300BE56E6BA413DB0DE6A6B5FCCA86D4 /* YJWaterFlowLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = YJWaterFlowLayout.framework; path = YJWaterFlowLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		53912E049792B977202C562F59A6EAD5 /* Pods-YJWaterFlowLayout_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-YJWaterFlowLayout_Example-dummy.m"; sourceTree = "<group>"; };
+		56731C669BE44CFA0DCFFD7835955939 /* Pods-YJWaterFlowLayout_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-YJWaterFlowLayout_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		6B48F83B92AA7F50BAD5347E600E3E54 /* YJWaterFlowLayout.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YJWaterFlowLayout.xcconfig; sourceTree = "<group>"; };
+		7C242CD021FAE29BC0A125452D2FDCE2 /* Pods-YJWaterFlowLayout_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-YJWaterFlowLayout_Tests.modulemap"; sourceTree = "<group>"; };
+		8C71602F708974C83CF2597F3797BD3F /* Pods-YJWaterFlowLayout_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-YJWaterFlowLayout_Example-umbrella.h"; sourceTree = "<group>"; };
+		9046202E9BEDBEA4C97109210395BF8B /* Pods-YJWaterFlowLayout_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YJWaterFlowLayout_Example-frameworks.sh"; sourceTree = "<group>"; };
+		904DF7938ACE76A7E17F55AA44478D34 /* Pods-YJWaterFlowLayout_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YJWaterFlowLayout_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9B8A4CD632206E70D3E4692ABC284226 /* Pods_YJWaterFlowLayout_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_YJWaterFlowLayout_Example.framework; path = "Pods-YJWaterFlowLayout_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A41FF58F0D1B24F6FF45FEBAA5E743D4 /* Pods-YJWaterFlowLayout_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YJWaterFlowLayout_Tests-resources.sh"; sourceTree = "<group>"; };
+		A4E203BF32F9C04B77B550CBE03CF082 /* Pods-YJWaterFlowLayout_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YJWaterFlowLayout_Example-resources.sh"; sourceTree = "<group>"; };
+		B49C2B91C06865B597314E1F1641EE0A /* YJWaterFlowLayout.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = YJWaterFlowLayout.modulemap; sourceTree = "<group>"; };
+		B4A130B2BB23FF51A3285DC199995B52 /* Pods-YJWaterFlowLayout_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-YJWaterFlowLayout_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		B61EF7E2B6723DDC1970011E7D158644 /* Pods-YJWaterFlowLayout_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YJWaterFlowLayout_Example.release.xcconfig"; sourceTree = "<group>"; };
+		B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		BC4794F3D272B07C328799A97977CBFD /* Pods-YJWaterFlowLayout_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YJWaterFlowLayout_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		C4CFF194B9B7A93E5AB100CBCC6A1662 /* YJWaterFlowLayout-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YJWaterFlowLayout-dummy.m"; sourceTree = "<group>"; };
+		C74D27B318765E9A7975968F75A07161 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8A5CD6A4028B798A4C8630409D758CF /* Pods-YJWaterFlowLayout_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-YJWaterFlowLayout_Tests-dummy.m"; sourceTree = "<group>"; };
+		CF7CFA689D9C34D055A6FB5E30638FEC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D257D6F37AE92C22A75BFBD155FA6D42 /* YJWaterFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = YJWaterFlowLayout.swift; sourceTree = "<group>"; };
+		D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		DCB7B2719316E7A2AA9302C2910DE4C6 /* Pods-YJWaterFlowLayout_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-YJWaterFlowLayout_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E26527579532B8CD6B8FBD4A91FEB53E /* Pods-YJWaterFlowLayout_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-YJWaterFlowLayout_Tests-umbrella.h"; sourceTree = "<group>"; };
+		E43F98E4A56C5CA5C197E75F0F592621 /* YJWaterFlowLayout-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YJWaterFlowLayout-prefix.pch"; sourceTree = "<group>"; };
+		F3F2A1522F607898D4651E07DC727066 /* Pods-YJWaterFlowLayout_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-YJWaterFlowLayout_Example.modulemap"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		40691E4DCD1ECF754B1F254DCB99F853 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C6A16D619C037F20A1F37A4C6A0930D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		967C8CAFEA9E02AC3AE4FB8465593B8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				268825DAE1125B347904679F3282442B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB7F33C4DB611954FC7F8AD90893928E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A1A9CD6D04B47A33FCDE0DB583AE180 /* Foundation.framework in Frameworks */,
+				14879B519E07BC4C33A3437117273D0B /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18E8FB23F05CF2E8E28C22ABC105361C /* YJWaterFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				9893DB2A39A2526E77285D58BCB3BA47 /* Classes */,
+			);
+			name = YJWaterFlowLayout;
+			path = YJWaterFlowLayout;
+			sourceTree = "<group>";
+		};
+		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				438B396F6B4147076630CAEFE34282C1 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		438B396F6B4147076630CAEFE34282C1 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */,
+				B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		6392B205E22E5AA795BC32E32B4E313B /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B163E97EC4C5B82F2CC4EB5598D5DCB5 /* Pods-YJWaterFlowLayout_Example */,
+				6660C0097485B9D499FB567653BCB6EC /* Pods-YJWaterFlowLayout_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		6660C0097485B9D499FB567653BCB6EC /* Pods-YJWaterFlowLayout_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				CF7CFA689D9C34D055A6FB5E30638FEC /* Info.plist */,
+				7C242CD021FAE29BC0A125452D2FDCE2 /* Pods-YJWaterFlowLayout_Tests.modulemap */,
+				DCB7B2719316E7A2AA9302C2910DE4C6 /* Pods-YJWaterFlowLayout_Tests-acknowledgements.markdown */,
+				B4A130B2BB23FF51A3285DC199995B52 /* Pods-YJWaterFlowLayout_Tests-acknowledgements.plist */,
+				C8A5CD6A4028B798A4C8630409D758CF /* Pods-YJWaterFlowLayout_Tests-dummy.m */,
+				BC4794F3D272B07C328799A97977CBFD /* Pods-YJWaterFlowLayout_Tests-frameworks.sh */,
+				A41FF58F0D1B24F6FF45FEBAA5E743D4 /* Pods-YJWaterFlowLayout_Tests-resources.sh */,
+				E26527579532B8CD6B8FBD4A91FEB53E /* Pods-YJWaterFlowLayout_Tests-umbrella.h */,
+				904DF7938ACE76A7E17F55AA44478D34 /* Pods-YJWaterFlowLayout_Tests.debug.xcconfig */,
+				2FC6C8B74CB9D65A21E6C78168924E48 /* Pods-YJWaterFlowLayout_Tests.release.xcconfig */,
+			);
+			name = "Pods-YJWaterFlowLayout_Tests";
+			path = "Target Support Files/Pods-YJWaterFlowLayout_Tests";
+			sourceTree = "<group>";
+		};
+		69EFCC8D8CAC3B6917FF3134B868E8AD /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8099987F996322464EB331B904FE1F10 /* YJWaterFlowLayout */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				69EFCC8D8CAC3B6917FF3134B868E8AD /* Development Pods */,
+				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
+				B0AC83CF32C7CE1C470639F9EB2DB028 /* Products */,
+				6392B205E22E5AA795BC32E32B4E313B /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8099987F996322464EB331B904FE1F10 /* YJWaterFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				F199255F3BED2FE03418874E71855C15 /* Support Files */,
+				18E8FB23F05CF2E8E28C22ABC105361C /* YJWaterFlowLayout */,
+			);
+			name = YJWaterFlowLayout;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		9893DB2A39A2526E77285D58BCB3BA47 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D257D6F37AE92C22A75BFBD155FA6D42 /* YJWaterFlowLayout.swift */,
+			);
+			name = Classes;
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		B0AC83CF32C7CE1C470639F9EB2DB028 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9B8A4CD632206E70D3E4692ABC284226 /* Pods_YJWaterFlowLayout_Example.framework */,
+				237FCCB1E56D0C639B657D48B45EDD12 /* Pods_YJWaterFlowLayout_Tests.framework */,
+				300BE56E6BA413DB0DE6A6B5FCCA86D4 /* YJWaterFlowLayout.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B163E97EC4C5B82F2CC4EB5598D5DCB5 /* Pods-YJWaterFlowLayout_Example */ = {
+			isa = PBXGroup;
+			children = (
+				C74D27B318765E9A7975968F75A07161 /* Info.plist */,
+				F3F2A1522F607898D4651E07DC727066 /* Pods-YJWaterFlowLayout_Example.modulemap */,
+				56731C669BE44CFA0DCFFD7835955939 /* Pods-YJWaterFlowLayout_Example-acknowledgements.markdown */,
+				16B66738927C53C3BC1B18A9A41A3784 /* Pods-YJWaterFlowLayout_Example-acknowledgements.plist */,
+				53912E049792B977202C562F59A6EAD5 /* Pods-YJWaterFlowLayout_Example-dummy.m */,
+				9046202E9BEDBEA4C97109210395BF8B /* Pods-YJWaterFlowLayout_Example-frameworks.sh */,
+				A4E203BF32F9C04B77B550CBE03CF082 /* Pods-YJWaterFlowLayout_Example-resources.sh */,
+				8C71602F708974C83CF2597F3797BD3F /* Pods-YJWaterFlowLayout_Example-umbrella.h */,
+				0536343328456022244E8CC50461B9F1 /* Pods-YJWaterFlowLayout_Example.debug.xcconfig */,
+				B61EF7E2B6723DDC1970011E7D158644 /* Pods-YJWaterFlowLayout_Example.release.xcconfig */,
+			);
+			name = "Pods-YJWaterFlowLayout_Example";
+			path = "Target Support Files/Pods-YJWaterFlowLayout_Example";
+			sourceTree = "<group>";
+		};
+		F199255F3BED2FE03418874E71855C15 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				14E532D40F2EF4A5A530130A8C6BA961 /* Info.plist */,
+				B49C2B91C06865B597314E1F1641EE0A /* YJWaterFlowLayout.modulemap */,
+				6B48F83B92AA7F50BAD5347E600E3E54 /* YJWaterFlowLayout.xcconfig */,
+				C4CFF194B9B7A93E5AB100CBCC6A1662 /* YJWaterFlowLayout-dummy.m */,
+				E43F98E4A56C5CA5C197E75F0F592621 /* YJWaterFlowLayout-prefix.pch */,
+				037A1AE4CFA001B7E2161D229225D3FA /* YJWaterFlowLayout-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/YJWaterFlowLayout";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2A201E26042E2AAAD7A07400CB2F3F61 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73F09937F54B35DCF3C1963E44426AF /* YJWaterFlowLayout-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		699C0EE226932C3E6880E0E169B64768 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F98C8D14AE8F10CF4018EC3286FD72D2 /* Pods-YJWaterFlowLayout_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9B660C56C48DE080171096B28FBA69B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8787FFDDC5EA0CAB0B97C9802A106CF2 /* Pods-YJWaterFlowLayout_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2B4C903CE3F4E3993E575D62813AA6E1 /* Pods-YJWaterFlowLayout_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9208E1923A2510BC872C56E13F4DF29 /* Build configuration list for PBXNativeTarget "Pods-YJWaterFlowLayout_Example" */;
+			buildPhases = (
+				45B3A122F0F85D22B4EF6465BE921A99 /* Sources */,
+				967C8CAFEA9E02AC3AE4FB8465593B8D /* Frameworks */,
+				699C0EE226932C3E6880E0E169B64768 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FB90A0962CE6941EE4A6CE819D11510 /* PBXTargetDependency */,
+			);
+			name = "Pods-YJWaterFlowLayout_Example";
+			productName = "Pods-YJWaterFlowLayout_Example";
+			productReference = 9B8A4CD632206E70D3E4692ABC284226 /* Pods_YJWaterFlowLayout_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B564D1DC733FE2721EDF1F7FE9C84DBD /* Pods-YJWaterFlowLayout_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D2C8991DDDBCB268C347B2AFE2888F3 /* Build configuration list for PBXNativeTarget "Pods-YJWaterFlowLayout_Tests" */;
+			buildPhases = (
+				A29FEEAF5B9759F82CA7F8CFF76BD8AA /* Sources */,
+				40691E4DCD1ECF754B1F254DCB99F853 /* Frameworks */,
+				E9B660C56C48DE080171096B28FBA69B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-YJWaterFlowLayout_Tests";
+			productName = "Pods-YJWaterFlowLayout_Tests";
+			productReference = 237FCCB1E56D0C639B657D48B45EDD12 /* Pods_YJWaterFlowLayout_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CA7404C893CA86360662A128F68C1677 /* YJWaterFlowLayout */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA06D1F14E7399F941143FE3E2C9E60D /* Build configuration list for PBXNativeTarget "YJWaterFlowLayout" */;
+			buildPhases = (
+				E8D1387D8F444A460F8A1E2E9ACF0EBB /* Sources */,
+				AB7F33C4DB611954FC7F8AD90893928E /* Frameworks */,
+				2A201E26042E2AAAD7A07400CB2F3F61 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YJWaterFlowLayout;
+			productName = YJWaterFlowLayout;
+			productReference = 300BE56E6BA413DB0DE6A6B5FCCA86D4 /* YJWaterFlowLayout.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = B0AC83CF32C7CE1C470639F9EB2DB028 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2B4C903CE3F4E3993E575D62813AA6E1 /* Pods-YJWaterFlowLayout_Example */,
+				B564D1DC733FE2721EDF1F7FE9C84DBD /* Pods-YJWaterFlowLayout_Tests */,
+				CA7404C893CA86360662A128F68C1677 /* YJWaterFlowLayout */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		45B3A122F0F85D22B4EF6465BE921A99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95C78167AD3438AE228D56D8FEAA9489 /* Pods-YJWaterFlowLayout_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A29FEEAF5B9759F82CA7F8CFF76BD8AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E259CCCED45D5D5E0B7158195066B699 /* Pods-YJWaterFlowLayout_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8D1387D8F444A460F8A1E2E9ACF0EBB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E24DE5DD96E78EDDA35D10B9826FCE29 /* YJWaterFlowLayout-dummy.m in Sources */,
+				18C02D6B3048A643325FAF49DF80440F /* YJWaterFlowLayout.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4FB90A0962CE6941EE4A6CE819D11510 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = YJWaterFlowLayout;
+			target = CA7404C893CA86360662A128F68C1677 /* YJWaterFlowLayout */;
+			targetProxy = 3F4FBB4D7687C53EA250A5A7B64C03BA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1B5FD3D4BA65C084A9527A386FCFAB17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 904DF7938ACE76A7E17F55AA44478D34 /* Pods-YJWaterFlowLayout_Tests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-YJWaterFlowLayout_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-YJWaterFlowLayout_Tests/Pods-YJWaterFlowLayout_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_YJWaterFlowLayout_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		1BBF997DEDCF3CA6EDC2328B6BBD96E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FC6C8B74CB9D65A21E6C78168924E48 /* Pods-YJWaterFlowLayout_Tests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-YJWaterFlowLayout_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-YJWaterFlowLayout_Tests/Pods-YJWaterFlowLayout_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_YJWaterFlowLayout_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		345CC476DF4A7516DBD2220CF5035FF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		352C13B746C8B955C57AD36EDEA737F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0536343328456022244E8CC50461B9F1 /* Pods-YJWaterFlowLayout_Example.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-YJWaterFlowLayout_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-YJWaterFlowLayout_Example/Pods-YJWaterFlowLayout_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_YJWaterFlowLayout_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		717E77604BFBB04BEAF56608A1CB2EDE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		84874934FF3CA1FAE6638A54B3C586C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B61EF7E2B6723DDC1970011E7D158644 /* Pods-YJWaterFlowLayout_Example.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-YJWaterFlowLayout_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-YJWaterFlowLayout_Example/Pods-YJWaterFlowLayout_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_YJWaterFlowLayout_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A1FBC1A6231EDBB6CFF7BC7881748B59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B48F83B92AA7F50BAD5347E600E3E54 /* YJWaterFlowLayout.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/YJWaterFlowLayout/YJWaterFlowLayout-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/YJWaterFlowLayout/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/YJWaterFlowLayout/YJWaterFlowLayout.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = YJWaterFlowLayout;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D6C2D37D652E102F7E5446A74D889077 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B48F83B92AA7F50BAD5347E600E3E54 /* YJWaterFlowLayout.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/YJWaterFlowLayout/YJWaterFlowLayout-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/YJWaterFlowLayout/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/YJWaterFlowLayout/YJWaterFlowLayout.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = YJWaterFlowLayout;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D2C8991DDDBCB268C347B2AFE2888F3 /* Build configuration list for PBXNativeTarget "Pods-YJWaterFlowLayout_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B5FD3D4BA65C084A9527A386FCFAB17 /* Debug */,
+				1BBF997DEDCF3CA6EDC2328B6BBD96E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				345CC476DF4A7516DBD2220CF5035FF3 /* Debug */,
+				717E77604BFBB04BEAF56608A1CB2EDE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C9208E1923A2510BC872C56E13F4DF29 /* Build configuration list for PBXNativeTarget "Pods-YJWaterFlowLayout_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				352C13B746C8B955C57AD36EDEA737F9 /* Debug */,
+				84874934FF3CA1FAE6638A54B3C586C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA06D1F14E7399F941143FE3E2C9E60D /* Build configuration list for PBXNativeTarget "YJWaterFlowLayout" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1FBC1A6231EDBB6CFF7BC7881748B59 /* Debug */,
+				D6C2D37D652E102F7E5446A74D889077 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

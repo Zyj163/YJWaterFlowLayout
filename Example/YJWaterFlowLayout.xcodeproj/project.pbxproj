@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5795DB531F04D3D600A14378 /* layout.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5795DB4F1F04D3D600A14378 /* layout.gif */; };
+		5795DB541F04D3D600A14378 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5795DB501F04D3D600A14378 /* ViewController.swift */; };
+		5795DB551F04D3D600A14378 /* WaterFlowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5795DB511F04D3D600A14378 /* WaterFlowCell.swift */; };
+		5795DB561F04D3D600A14378 /* WaterFlowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5795DB521F04D3D600A14378 /* WaterFlowCell.xib */; };
 		598E797E5F040180D882F559 /* Pods_YJWaterFlowLayout_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2181556B65F5CC8CB61A32EC /* Pods_YJWaterFlowLayout_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
@@ -28,16 +31,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		06C50C2D118356CC8B4813C1 /* YJWaterFlowLayout.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = YJWaterFlowLayout.podspec; path = ../YJWaterFlowLayout.podspec; sourceTree = "<group>"; };
+		06C50C2D118356CC8B4813C1 /* YJWaterFlowLayout.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = YJWaterFlowLayout.podspec; path = ../YJWaterFlowLayout.podspec; sourceTree = "<group>"; };
 		1C5B72D4AA05670C37B9ABB8 /* Pods-YJWaterFlowLayout_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YJWaterFlowLayout_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YJWaterFlowLayout_Tests/Pods-YJWaterFlowLayout_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		2181556B65F5CC8CB61A32EC /* Pods_YJWaterFlowLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YJWaterFlowLayout_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C8C6979CB214419BB6D92D9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		2C8C6979CB214419BB6D92D9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		479326BCE5A82BDCC2CD51CC /* Pods-YJWaterFlowLayout_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YJWaterFlowLayout_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YJWaterFlowLayout_Example/Pods-YJWaterFlowLayout_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		5795DB4F1F04D3D600A14378 /* layout.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = layout.gif; sourceTree = "<group>"; };
+		5795DB501F04D3D600A14378 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5795DB511F04D3D600A14378 /* WaterFlowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFlowCell.swift; sourceTree = "<group>"; };
+		5795DB521F04D3D600A14378 /* WaterFlowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaterFlowCell.xib; sourceTree = "<group>"; };
 		57E3337C109F2D356AF9A989 /* Pods-YJWaterFlowLayout_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YJWaterFlowLayout_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YJWaterFlowLayout_Tests/Pods-YJWaterFlowLayout_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* YJWaterFlowLayout_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YJWaterFlowLayout_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -45,7 +51,7 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		A83E591E8E8C84EFFFAEDF7D /* Pods-YJWaterFlowLayout_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YJWaterFlowLayout_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-YJWaterFlowLayout_Example/Pods-YJWaterFlowLayout_Example.release.xcconfig"; sourceTree = "<group>"; };
-		D9DE61F6E692A4C3C902603A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		D9DE61F6E692A4C3C902603A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E79D8541A38A68BCE60F6AAC /* Pods_YJWaterFlowLayout_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YJWaterFlowLayout_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -94,7 +100,10 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				5795DB4F1F04D3D600A14378 /* layout.gif */,
+				5795DB501F04D3D600A14378 /* ViewController.swift */,
+				5795DB511F04D3D600A14378 /* WaterFlowCell.swift */,
+				5795DB521F04D3D600A14378 /* WaterFlowCell.xib */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -248,8 +257,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5795DB531F04D3D600A14378 /* layout.gif in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				5795DB561F04D3D600A14378 /* WaterFlowCell.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,8 +372,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				5795DB541F04D3D600A14378 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				5795DB551F04D3D600A14378 /* WaterFlowCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

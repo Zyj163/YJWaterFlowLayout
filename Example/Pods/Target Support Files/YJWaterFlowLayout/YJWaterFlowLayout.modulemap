@@ -1,0 +1,6 @@
+framework module YJWaterFlowLayout {
+  umbrella header "YJWaterFlowLayout-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,16 @@
+PODS:
+  - YJWaterFlowLayout (0.0.1)
+
+DEPENDENCIES:
+  - YJWaterFlowLayout (from `../`)
+
+EXTERNAL SOURCES:
+  YJWaterFlowLayout:
+    :path: ../
+
+SPEC CHECKSUMS:
+  YJWaterFlowLayout: 9fa4cdd7cd2ffc0636ea1df1337c924c8143ad47
+
+PODFILE CHECKSUM: c0a4f12446aa559cad2e7e71c11b68f02d4132d3
+
+COCOAPODS: 1.2.1
