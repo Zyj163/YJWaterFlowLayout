@@ -121,7 +121,7 @@ YJCollectionSectionFooter  footer的类型string
 
 ## Author
 
-Zyj163, zhangyongjun@pj-l.com
+Zyj163, zyj194250@163.com
 
 ## License
 
