@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'YJWaterFlowLayout_Example' do
+  pod 'YJWaterFlowLayout', :path => '../'
+
+  target 'YJWaterFlowLayout_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
