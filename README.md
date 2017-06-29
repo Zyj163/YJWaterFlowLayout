@@ -17,7 +17,7 @@ YJWaterFlowLayout is available through [CocoaPods](http://cocoapods.org). To ins
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "YJWaterFlowLayout"
+pod "YJWaterFlowLayout", :git => 'https://github.com/Zyj163/YJWaterFlowLayout.git'
 ```
 
 ## Use
