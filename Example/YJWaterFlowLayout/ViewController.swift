@@ -9,10 +9,14 @@
 import UIKit
 import YJWaterFlowLayout
 
+struct ItemLayout: YJWaterLayoutModelable {
+	var size: CGSize
+}
+
 class ViewController: UIViewController {
     
     fileprivate var collectionView: UICollectionView?
-    var datas: [Int] = [Int]()
+    var datas: [YJWaterLayoutModelable] = [YJWaterLayoutModelable]()
     
     @IBAction func switchHeader(_ sender: UIButton) {
         let layout = collectionView!.collectionViewLayout as! YJWaterFlowLayout
@@ -49,7 +53,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 		for _ in 0...19 {
 			let height = Int(arc4random_uniform((UInt32(100)))) + 40
-			datas.append(height)
+			
+			datas.append(ItemLayout(size: CGSize(width: 100, height: height)))
 		}
 		
         let layout = YJWaterFlowLayout()
@@ -58,6 +63,7 @@ class ViewController: UIViewController {
         layout.footerSize = CGSize.zero
         layout.delegate = self
 		layout.moveAction = self
+		layout.waterCount = 2
 		
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 24, width: view.bounds.size.width, height: view.bounds.size.height * 0.7), collectionViewLayout: layout)
         collectionView?.backgroundColor = UIColor.green
@@ -65,10 +71,9 @@ class ViewController: UIViewController {
         collectionView?.register(UINib.init(nibName: "WaterFlowCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         collectionView?.register(TestHeader.self, forSupplementaryViewOfKind: YJCollectionSectionHeader, withReuseIdentifier: "header")
         collectionView?.register(TestHeader.self, forSupplementaryViewOfKind: YJCollectionSectionFooter, withReuseIdentifier: "footer")
-        
         collectionView?.dataSource = self
         collectionView?.delegate = self
-        
+		
         view.addSubview(collectionView!)
 		
 		
@@ -77,16 +82,19 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: YJWaterLayoutDelegate {
-    func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
-                         sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: datas[indexPath.item])
-    }
+	func collectionView (_ collectionView: UICollectionView,layout collectionViewLayout: YJWaterFlowLayout,
+	                     sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+		return CGSize(width: 100, height: datas[indexPath.item].size.height)
+	}
 }
 
 
 extension ViewController: YJWaterLayoutMovable {
 	func enableMoveItem(_ layout: YJWaterFlowLayout) -> Bool {
 		return true
+	}
+	func itemLayoutDatas (layout collectionViewLayout: YJWaterFlowLayout) -> [YJWaterLayoutModelable] {
+		return datas
 	}
 }
 
@@ -97,11 +105,12 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! WaterFlowCell
-        cell.textLabel.text = "\(datas[indexPath.item]): \(indexPath.item)"
+        cell.textLabel.text = "\(datas[indexPath.item].size.height * 2): \(indexPath.item)"
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+		print(sourceIndexPath.item, destinationIndexPath.item)
 		if #available(iOS 9.0, *) {
 			(collectionView.collectionViewLayout as! YJWaterFlowLayout).moveItem(&datas, moveItemAt: sourceIndexPath, to: destinationIndexPath)
 		}

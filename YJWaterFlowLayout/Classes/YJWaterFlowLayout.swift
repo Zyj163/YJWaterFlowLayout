@@ -21,7 +21,7 @@ fileprivate func - (left: CGSize, right: CGSize) ->CGSize {
     //itemSize大小，必须实现
     func collectionView (_ collectionView: UICollectionView,layout collectionViewLayout: YJWaterFlowLayout,
                          sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize
-    
+	
     //头视图大小
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
                                         sizeForHeaderInSection section: NSInteger) -> CGSize
@@ -43,10 +43,14 @@ fileprivate func - (left: CGSize, right: CGSize) ->CGSize {
                                         minimumWaterSpacingForSection section: NSInteger) -> CGFloat
 }
 
+public protocol YJWaterLayoutModelable {
+	var size: CGSize {get}
+}
 
 public protocol YJWaterLayoutMovable: class {
 	@available(iOS 9.0, *)
 	func enableMoveItem (_ layout: YJWaterFlowLayout) -> Bool
+	func itemLayoutDatas (layout collectionViewLayout: YJWaterFlowLayout) -> [YJWaterLayoutModelable]
 }
 
 public enum YJCollectionViewLayoutDirection : NSInteger {
@@ -111,14 +115,17 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
     public weak var delegate: YJWaterLayoutDelegate?
 	public weak var moveAction: YJWaterLayoutMovable?
 	
+	fileprivate var itemLayoutDatas: [YJWaterLayoutModelable]?
+	
 	@available(iOS 9.0, *)
-	open func moveItem<T>( _ resource: inout [T], moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-		if self.longGes.state == .ended {
-			return
-		}
+	open func moveItem( _ resource: inout [YJWaterLayoutModelable], moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
 		
 		let temp = resource.remove(at: sourceIndexPath.item)
 		resource.insert(temp, at: destinationIndexPath.item)
+		
+		if longGes.state == .ended {
+			resource = itemLayoutDatas!
+		}
 	}
 	
     
@@ -309,7 +316,7 @@ extension YJWaterFlowLayout {
     }
     
     fileprivate func getMinimumSpacing(waterSpacing: inout CGFloat, itemSpacing: inout CGFloat, for section: Int) {
-        
+		
         if let spacing = delegate?.collectionView?(collectionView!, layout: self, minimumItemSpacingForSection: section) {
             itemSpacing = spacing
         } else {
@@ -427,14 +434,29 @@ extension YJWaterFlowLayout {
             
             let xOffset = layoutDirection == .vertical ? sectionInset.left + (waterWidth + minimumWaterSpacing) * CGFloat(index) : itemSizes[index].width
             let yOffset = layoutDirection == .vertical ? itemSizes[index].height : sectionInset.top + (waterWidth + minimumWaterSpacing) * CGFloat(index)
-            let itemSize = delegate?.collectionView(collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
+			
+			var itemSize: CGSize?
+			if #available(iOS 9.0, *) {
+				if enableMove && longGes.state == .changed {
+					if itemLayoutDatas == nil {
+						itemLayoutDatas = moveAction?.itemLayoutDatas(layout: self)
+					}
+					guard let _ = itemLayoutDatas else { return }
+					itemSize = itemLayoutDatas?[indexPath.item].size
+				} else {
+					itemSize = delegate?.collectionView(collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
+				}
+			} else {
+				itemSize = delegate?.collectionView(collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
+			}
+			
             
             var itemLength: CGFloat = 0.0
-            
+			
             if itemSize! > CGSize.zero {
                 itemLength = layoutDirection == .vertical ? (itemSize!.height * waterWidth/itemSize!.width) : (itemSize!.width * waterWidth/itemSize!.height)
             }
-            
+			
             attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             attributes.frame = CGRect(x: xOffset, y: yOffset, width: layoutDirection == .vertical ? waterWidth : itemLength, height: layoutDirection == .vertical ? itemLength : waterWidth)
             
@@ -470,13 +492,18 @@ extension YJWaterFlowLayout {
 			guard let selectedIndexPath = collectionView?.indexPathForItem(at: gesture.location(in: collectionView)) else {
 				break
 			}
-			collectionView?.beginInteractiveMovementForItem(at: selectedIndexPath)
+			if let datas = moveAction?.itemLayoutDatas(layout: self) {
+				itemLayoutDatas = datas
+				collectionView?.beginInteractiveMovementForItem(at: selectedIndexPath)
+			}
 		case .changed:
 			collectionView?.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
 		case .ended:
 			collectionView?.endInteractiveMovement()
+			itemLayoutDatas = nil
 		default:
 			collectionView?.cancelInteractiveMovement()
+			itemLayoutDatas = nil
 		}
 	}
 }
@@ -491,15 +518,19 @@ extension YJWaterFlowLayout {
 		
 		//同一分区，不同item
 		if previousIndexPaths.first!.item != targetIndexPaths.first!.item {
-			collectionView?.dataSource?.collectionView?(collectionView!, moveItemAt: previousIndexPaths.first!, to: targetIndexPaths.last!)
+			if let _ = itemLayoutDatas {
+				moveItem(&itemLayoutDatas!, moveItemAt: previousIndexPaths.first!, to: targetIndexPaths.first!)
+			}
 		}
 		
 		return context
 	}
+	
 	@available(iOS 9.0, *)
 	open override func layoutAttributesForInteractivelyMovingItem(at indexPath: IndexPath, withTargetPosition position: CGPoint) -> UICollectionViewLayoutAttributes {
 		let attr = super.layoutAttributesForInteractivelyMovingItem(at: indexPath, withTargetPosition: position)
 		attr.alpha = 0.75
+		
 		return attr
 	}
 }
