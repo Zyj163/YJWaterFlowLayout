@@ -484,7 +484,7 @@ extension YJWaterFlowLayout {
     }
 	
 	@available(iOS 9.0, *)
-	func handleLongGesture(_ gesture: UILongPressGestureRecognizer) {
+	@objc func handleLongGesture(_ gesture: UILongPressGestureRecognizer) {
 		
 		switch(gesture.state) {
 			

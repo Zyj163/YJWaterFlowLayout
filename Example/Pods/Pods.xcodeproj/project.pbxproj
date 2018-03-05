@@ -35,21 +35,21 @@
 		0536343328456022244E8CC50461B9F1 /* Pods-YJWaterFlowLayout_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YJWaterFlowLayout_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		14E532D40F2EF4A5A530130A8C6BA961 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16B66738927C53C3BC1B18A9A41A3784 /* Pods-YJWaterFlowLayout_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-YJWaterFlowLayout_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		237FCCB1E56D0C639B657D48B45EDD12 /* Pods_YJWaterFlowLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_YJWaterFlowLayout_Tests.framework; path = "Pods-YJWaterFlowLayout_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		237FCCB1E56D0C639B657D48B45EDD12 /* Pods_YJWaterFlowLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YJWaterFlowLayout_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FC6C8B74CB9D65A21E6C78168924E48 /* Pods-YJWaterFlowLayout_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YJWaterFlowLayout_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		300BE56E6BA413DB0DE6A6B5FCCA86D4 /* YJWaterFlowLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = YJWaterFlowLayout.framework; path = YJWaterFlowLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		300BE56E6BA413DB0DE6A6B5FCCA86D4 /* YJWaterFlowLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YJWaterFlowLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53912E049792B977202C562F59A6EAD5 /* Pods-YJWaterFlowLayout_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-YJWaterFlowLayout_Example-dummy.m"; sourceTree = "<group>"; };
 		56731C669BE44CFA0DCFFD7835955939 /* Pods-YJWaterFlowLayout_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-YJWaterFlowLayout_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		6B48F83B92AA7F50BAD5347E600E3E54 /* YJWaterFlowLayout.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YJWaterFlowLayout.xcconfig; sourceTree = "<group>"; };
-		7C242CD021FAE29BC0A125452D2FDCE2 /* Pods-YJWaterFlowLayout_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-YJWaterFlowLayout_Tests.modulemap"; sourceTree = "<group>"; };
+		7C242CD021FAE29BC0A125452D2FDCE2 /* Pods-YJWaterFlowLayout_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-YJWaterFlowLayout_Tests.modulemap"; sourceTree = "<group>"; };
 		8C71602F708974C83CF2597F3797BD3F /* Pods-YJWaterFlowLayout_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-YJWaterFlowLayout_Example-umbrella.h"; sourceTree = "<group>"; };
 		9046202E9BEDBEA4C97109210395BF8B /* Pods-YJWaterFlowLayout_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YJWaterFlowLayout_Example-frameworks.sh"; sourceTree = "<group>"; };
 		904DF7938ACE76A7E17F55AA44478D34 /* Pods-YJWaterFlowLayout_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YJWaterFlowLayout_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9B8A4CD632206E70D3E4692ABC284226 /* Pods_YJWaterFlowLayout_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_YJWaterFlowLayout_Example.framework; path = "Pods-YJWaterFlowLayout_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9B8A4CD632206E70D3E4692ABC284226 /* Pods_YJWaterFlowLayout_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YJWaterFlowLayout_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41FF58F0D1B24F6FF45FEBAA5E743D4 /* Pods-YJWaterFlowLayout_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YJWaterFlowLayout_Tests-resources.sh"; sourceTree = "<group>"; };
 		A4E203BF32F9C04B77B550CBE03CF082 /* Pods-YJWaterFlowLayout_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YJWaterFlowLayout_Example-resources.sh"; sourceTree = "<group>"; };
-		B49C2B91C06865B597314E1F1641EE0A /* YJWaterFlowLayout.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = YJWaterFlowLayout.modulemap; sourceTree = "<group>"; };
+		B49C2B91C06865B597314E1F1641EE0A /* YJWaterFlowLayout.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = YJWaterFlowLayout.modulemap; sourceTree = "<group>"; };
 		B4A130B2BB23FF51A3285DC199995B52 /* Pods-YJWaterFlowLayout_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-YJWaterFlowLayout_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		B61EF7E2B6723DDC1970011E7D158644 /* Pods-YJWaterFlowLayout_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YJWaterFlowLayout_Example.release.xcconfig"; sourceTree = "<group>"; };
 		B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -63,7 +63,7 @@
 		DCB7B2719316E7A2AA9302C2910DE4C6 /* Pods-YJWaterFlowLayout_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-YJWaterFlowLayout_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E26527579532B8CD6B8FBD4A91FEB53E /* Pods-YJWaterFlowLayout_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-YJWaterFlowLayout_Tests-umbrella.h"; sourceTree = "<group>"; };
 		E43F98E4A56C5CA5C197E75F0F592621 /* YJWaterFlowLayout-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YJWaterFlowLayout-prefix.pch"; sourceTree = "<group>"; };
-		F3F2A1522F607898D4651E07DC727066 /* Pods-YJWaterFlowLayout_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-YJWaterFlowLayout_Example.modulemap"; sourceTree = "<group>"; };
+		F3F2A1522F607898D4651E07DC727066 /* Pods-YJWaterFlowLayout_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-YJWaterFlowLayout_Example.modulemap"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +100,6 @@
 			children = (
 				9893DB2A39A2526E77285D58BCB3BA47 /* Classes */,
 			);
-			name = YJWaterFlowLayout;
 			path = YJWaterFlowLayout;
 			sourceTree = "<group>";
 		};
@@ -182,7 +181,6 @@
 			children = (
 				D257D6F37AE92C22A75BFBD155FA6D42 /* YJWaterFlowLayout.swift */,
 			);
-			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -318,6 +316,14 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					2B4C903CE3F4E3993E575D62813AA6E1 = {
+						LastSwiftMigration = 0910;
+					};
+					CA7404C893CA86360662A128F68C1677 = {
+						LastSwiftMigration = 0910;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -528,7 +534,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -610,7 +617,8 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -645,7 +653,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -679,7 +688,8 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
