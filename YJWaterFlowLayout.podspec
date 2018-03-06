@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'YJWaterFlowLayout'
-  s.version          = '0.0.3'
+  s.version          = '0.1.0'
   s.summary          = 'YJWaterFlowLayout'
 
 # This description is used to generate tags and improve search results.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-YJWaterFlowLayout  横向纵向瀑布流布局，可拖拽item，可添加头视图和脚视图
+YJWaterFlowLayout  横向纵向流布局，不同section可以有不同布局，支持瀑布流，可拖拽item，可添加头视图和脚视图
                        DESC
 
   s.homepage         = 'https://github.com/Zyj163/YJWaterFlowLayout'
