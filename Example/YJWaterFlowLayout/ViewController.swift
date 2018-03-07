@@ -87,11 +87,12 @@ class ViewController: UIViewController {
         self.collectionView?.dataSource = self
         self.collectionView?.delegate = self
         
+        self.collectionView?.register(UINib.init(nibName: "WaterFlowCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+        self.collectionView?.register(TestHeader.self, forSupplementaryViewOfKind: YJCollectionSectionHeader, withReuseIdentifier: "header")
+        self.collectionView?.register(TestHeader.self, forSupplementaryViewOfKind: YJCollectionSectionFooter, withReuseIdentifier: "footer")
+        self.collectionView?.register(TestHeader.self, forSupplementaryViewOfKind: YJCollectionSectionBackground, withReuseIdentifier: "background")
+        
         layout.asyncPrepare {
-            self.collectionView?.register(UINib.init(nibName: "WaterFlowCell", bundle: nil), forCellWithReuseIdentifier: "cell")
-            self.collectionView?.register(TestHeader.self, forSupplementaryViewOfKind: YJCollectionSectionHeader, withReuseIdentifier: "header")
-            self.collectionView?.register(TestHeader.self, forSupplementaryViewOfKind: YJCollectionSectionFooter, withReuseIdentifier: "footer")
-            
             self.view.addSubview(self.collectionView!)
         }
     }
@@ -203,13 +204,17 @@ extension ViewController: UICollectionViewDataSource {
         if kind == YJCollectionSectionHeader {
             //复用header
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: YJCollectionSectionHeader, withReuseIdentifier: "header", for: indexPath)
-            header.backgroundColor = UIColor.red
+            header.backgroundColor = .red
             return header
-        }else {
+        }else if kind == YJCollectionSectionFooter {
             //复用footer
             let footer = collectionView.dequeueReusableSupplementaryView(ofKind: YJCollectionSectionFooter, withReuseIdentifier: "footer", for: indexPath)
-            footer.backgroundColor = UIColor.blue
+            footer.backgroundColor = .blue
             return footer
+        } else {
+            let background = collectionView.dequeueReusableSupplementaryView(ofKind: YJCollectionSectionBackground, withReuseIdentifier: "background", for: indexPath)
+            background.backgroundColor = .yellow
+            return background
         }
     }
 }

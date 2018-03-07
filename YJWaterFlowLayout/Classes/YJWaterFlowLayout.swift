@@ -48,6 +48,10 @@ fileprivate func - (left: CGSize, right: CGSize) ->CGSize {
     //流宽度
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
                          waterWidthForSection section: Int, at index: Int) -> CGFloat
+    
+    //流宽度
+    @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
+                                        relocationBackgroundForSection section: Int, currentFrame: CGRect) -> CGRect
 }
 
 public protocol YJWaterLayoutModelable {
@@ -70,6 +74,8 @@ public enum YJCollectionViewLayoutDirection : Int {
 
 public let YJCollectionSectionHeader = "YJCollectionSectionHeader"
 public let YJCollectionSectionFooter = "YJCollectionSectionFooter"
+public let YJCollectionSectionBackground = "YJCollectionSectionBackground"
+
 public let YJCollectionAutoInt: Int = 0
 public let YJCollectionAutoFloat: Float = 0
 public let YJCollectionAutoCGFloat: CGFloat = 0
@@ -130,6 +136,7 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
     fileprivate var allItemAttributes = [UICollectionViewLayoutAttributes]()
     fileprivate var headerAttributes = [Int : UICollectionViewLayoutAttributes]()
     fileprivate var footerAttributes = [Int : UICollectionViewLayoutAttributes]()
+    fileprivate var backgroundAttributes = [Int: UICollectionViewLayoutAttributes]()
     fileprivate var unionRects = [CGRect]()
     
     fileprivate var async: Bool = false
@@ -156,6 +163,7 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
         DispatchQueue.global().async {
             self.async = true
             self.prepareToLayout()
+            self.async = false
             DispatchQueue.main.async {
                 completeHandler?()
             }
@@ -168,7 +176,6 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
             return
         }
         prepareToLayout()
-        async = false
     }
     
     fileprivate func prepareToLayout() {
@@ -228,10 +235,11 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
             layoutHeaders(totalSize: &size, attributes: &attributes, for: section)
             
             //item
-            layoutItems(totalSize: &size, attributes: &attributes, minimumWaterSpacing: minimumWaterSpacing, minimumItemSpacing: minimumItemSpacing, for: section)
+            layoutItemsAndBackground(totalSize: &size, attributes: &attributes, minimumWaterSpacing: minimumWaterSpacing, minimumItemSpacing: minimumItemSpacing, for: section)
             
             //footer
             layoutFooters(totalSize: &size, attributes: &attributes, minimumWaterSpacing: minimumWaterSpacing, minimumItemSpacing: minimumItemSpacing, for: section)
+            
         }
         
         var idx = 0
@@ -278,6 +286,8 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
             attribute = headerAttributes[indexPath.section]!
         } else if elementKind == YJCollectionSectionFooter {
             attribute = footerAttributes[indexPath.section]!
+        } else if elementKind == YJCollectionSectionBackground {
+            attribute = backgroundAttributes[indexPath.section]!
         }
         return attribute
     }
@@ -381,6 +391,7 @@ extension YJWaterFlowLayout {
             let x = h ? size.width : 0, y = v ? size.height : 0
             
             attributes.frame = CGRect(x: x, y: y, width: headerSize.width, height: headerSize.height)
+            attributes.zIndex = 2
             headerAttributes[section] = attributes
             allItemAttributes.append(attributes)
             
@@ -426,6 +437,7 @@ extension YJWaterFlowLayout {
             let x = h ? size.width : 0, y = v ? size.height : 0
             
             attributes.frame = CGRect(x: x, y: y, width: footerSize.width, height: footerSize.height)
+            attributes.zIndex = 2
             footerAttributes[section] = attributes
             allItemAttributes.append(attributes)
             
@@ -440,7 +452,7 @@ extension YJWaterFlowLayout {
         allItemSizes[section] = itemSizes
     }
     
-    fileprivate func layoutItems(totalSize size: inout CGSize, attributes: inout UICollectionViewLayoutAttributes, minimumWaterSpacing: CGFloat, minimumItemSpacing: CGFloat, for section: Int) {
+    fileprivate func layoutItemsAndBackground(totalSize size: inout CGSize, attributes: inout UICollectionViewLayoutAttributes, minimumWaterSpacing: CGFloat, minimumItemSpacing: CGFloat, for section: Int) {
         
         let itemCount = collectionView!.numberOfItems(inSection: section)
         var itemAttributes = [UICollectionViewLayoutAttributes]()
@@ -450,6 +462,8 @@ extension YJWaterFlowLayout {
         let sectionInset = sectionInsets[section]!
         var preX: CGFloat = 0
         var preY: CGFloat = 0
+        let backgroundAttr = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: YJCollectionSectionBackground, with: IndexPath(item: 0, section: section))
+        let nextIdx = allItemAttributes.count
         for idx in 0..<itemCount {
             let indexPath = IndexPath(item: idx, section: section)
             
@@ -497,13 +511,26 @@ extension YJWaterFlowLayout {
             
             attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             attributes.frame = CGRect(x: xOffset, y: yOffset, width: layoutDirection == .vertical ? waterWidth : itemLength, height: layoutDirection == .vertical ? itemLength : waterWidth)
-            
+            attributes.zIndex = 1
             itemAttributes.append(attributes)
             allItemAttributes.append(attributes)
             
             itemSizes[index] = CGSize(width: attributes.frame.maxX, height: attributes.frame.maxY)
             allItemSizes[section] = itemSizes
         }
+        if let firstItemAttr = itemAttributes.first {
+            backgroundAttr.frame.origin.x = firstItemAttr.frame.minX
+            backgroundAttr.frame.origin.y = firstItemAttr.frame.minY
+            backgroundAttr.frame.size.width = layoutDirection == .vertical ? collectionView!.bounds.size.width - sectionInset.left - sectionInset.right : itemSizes[longestIndex(section: section)].width - firstItemAttr.frame.minX
+            backgroundAttr.frame.size.height = layoutDirection == .horizontal ? collectionView!.bounds.size.height - sectionInset.top - sectionInset.bottom : itemSizes[longestIndex(section: section)].height - firstItemAttr.frame.minY
+            backgroundAttr.zIndex = 0
+            if let reloaction = delegate?.collectionView?(collectionView!, layout: self, relocationBackgroundForSection: section, currentFrame: backgroundAttr.frame) {
+                backgroundAttr.frame = reloaction
+            }
+            backgroundAttributes[section] = backgroundAttr
+            allItemAttributes.insert(backgroundAttr, at: nextIdx)
+        }
+        
         
         sectionItemAttributes.append(itemAttributes)
     }
@@ -518,9 +545,9 @@ extension YJWaterFlowLayout {
         miniWaterSpaces.removeAll(keepingCapacity: true)
         waterCounts.removeAll(keepingCapacity: true)
         sectionInsets.removeAll(keepingCapacity: true)
-        allItemAttributes.removeAll(keepingCapacity: true)
+        allItemAttributes.removeAll(keepingCapacity: false)
         sectionItemAttributes.removeAll(keepingCapacity: true)
-        unionRects.removeAll(keepingCapacity: true)
+        backgroundAttributes.removeAll(keepingCapacity: true)
         
         if #available(iOS 9.0, *) {
             if let enable = moveAction?.enableMoveItem(self) {
