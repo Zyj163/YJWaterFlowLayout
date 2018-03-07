@@ -84,16 +84,16 @@ class ViewController: UIViewController {
 		
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 24, width: view.bounds.size.width, height: view.bounds.size.height * 0.7), collectionViewLayout: layout)
         collectionView?.backgroundColor = UIColor.green
+        self.collectionView?.dataSource = self
+        self.collectionView?.delegate = self
         
-        collectionView?.register(UINib.init(nibName: "WaterFlowCell", bundle: nil), forCellWithReuseIdentifier: "cell")
-        collectionView?.register(TestHeader.self, forSupplementaryViewOfKind: YJCollectionSectionHeader, withReuseIdentifier: "header")
-        collectionView?.register(TestHeader.self, forSupplementaryViewOfKind: YJCollectionSectionFooter, withReuseIdentifier: "footer")
-        collectionView?.dataSource = self
-        collectionView?.delegate = self
-		
-        view.addSubview(collectionView!)
-		
-		
+        layout.asyncPrepare {
+            self.collectionView?.register(UINib.init(nibName: "WaterFlowCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+            self.collectionView?.register(TestHeader.self, forSupplementaryViewOfKind: YJCollectionSectionHeader, withReuseIdentifier: "header")
+            self.collectionView?.register(TestHeader.self, forSupplementaryViewOfKind: YJCollectionSectionFooter, withReuseIdentifier: "footer")
+            
+            self.view.addSubview(self.collectionView!)
+        }
     }
 }
 

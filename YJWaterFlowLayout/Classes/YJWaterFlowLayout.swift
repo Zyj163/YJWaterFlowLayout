@@ -16,7 +16,7 @@ fileprivate func - (left: CGSize, right: CGSize) ->CGSize {
     return CGSize(width: left.width - right.width, height: left.height - right.height)
 }
 
-@objc public protocol YJWaterLayoutDelegate: NSObjectProtocol {
+@objc public protocol YJWaterLayoutDelegate: UICollectionViewDataSource,  UICollectionViewDelegate {
     
     //itemSize宽高比，必须实现
     func collectionView (_ collectionView: UICollectionView,layout collectionViewLayout: YJWaterFlowLayout,
@@ -132,6 +132,8 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
     fileprivate var footerAttributes = [Int : UICollectionViewLayoutAttributes]()
     fileprivate var unionRects = [CGRect]()
     
+    fileprivate var async: Bool = false
+    
     @available(iOS 9.0, *)
     fileprivate lazy var longGes: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture(_:)))
     
@@ -150,9 +152,27 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
         }
     }
     
+    open func asyncPrepare(_ completeHandler: (()->())?) {
+        DispatchQueue.global().async {
+            self.async = true
+            self.prepareToLayout()
+            DispatchQueue.main.async {
+                completeHandler?()
+            }
+        }
+    }
+    
     open override func prepare() {
         super.prepare()
-        guard let _ = self.delegate else {
+        if async && !allItemAttributes.isEmpty {
+            return
+        }
+        prepareToLayout()
+        async = false
+    }
+    
+    fileprivate func prepareToLayout() {
+        guard let delegate = self.delegate else {
             return
         }
         
@@ -175,12 +195,12 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
             
             var widths = waterWidths[section] ?? [Int: CGFloat]()
             
-            miniItemSpaces[section] = delegate?.collectionView?(collectionView, layout: self, minimumItemSpacingForSection: section) ?? self.minimumItemSpacing
-            miniWaterSpaces[section] = delegate?.collectionView?(collectionView, layout: self, minimumWaterSpacingForSection: section) ?? self.minimumWaterSpacing
+            miniItemSpaces[section] = delegate.collectionView?(collectionView, layout: self, minimumItemSpacingForSection: section) ?? self.minimumItemSpacing
+            miniWaterSpaces[section] = delegate.collectionView?(collectionView, layout: self, minimumWaterSpacingForSection: section) ?? self.minimumWaterSpacing
             
-            sectionInsets[section] = delegate?.collectionView?(collectionView, layout: self, insetForSectionAtIndex: section) ?? sectionInset
+            sectionInsets[section] = delegate.collectionView?(collectionView, layout: self, insetForSectionAtIndex: section) ?? sectionInset
             
-            if let count = delegate?.collectionView?(collectionView, layout: self, waterCountForSection: section), count > 0 {
+            if let count = delegate.collectionView?(collectionView, layout: self, waterCountForSection: section), count > 0 {
                 waterCounts[section] = count
             } else {
                 waterCounts[section] = waterCount
@@ -189,7 +209,7 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
             var idx = 0
             while idx < waterCounts[section]! {
                 itemSizes.append(CGSize.zero)
-                if let w = delegate?.collectionView?(collectionView, layout: self, waterWidthForSection: section, at: idx), w > 0 {
+                if let w = delegate.collectionView?(collectionView, layout: self, waterWidthForSection: section, at: idx), w > 0 {
                     widths[idx] = w
                 } else {
                     widths[idx] = getWaterWidth(section: section, index: idx)
