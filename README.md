@@ -8,7 +8,7 @@
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
-![image](https://github.com/Zyj163/YJWaterFlowLayout/blob/master/Example/YJWaterFlowLayout/layout.gif)
+![image](https://github.com/Zyj163/YJWaterFlowLayout/blob/master/Example/YJWaterFlowLayout/movie.gif)
 ## Requirements
 
 ## Installation
@@ -25,7 +25,7 @@ pod "YJWaterFlowLayout", :git => 'https://github.com/Zyj163/YJWaterFlowLayout.gi
 
 waterCount
 
-瀑布流的条数，默认为2
+瀑布流的条数，默认为2（优先级低于代理方法中的设置）
 
 
 minimumWaterSpacing
@@ -67,7 +67,10 @@ delegate  代理
 moveAction 拖拽代理
 
 
-返回indexPath对应item的size，必须实现
+流条数，可选实现，如果没有实现，使用属性waterCount，返回YJCollectionAutoInt当作未实现处理
+unc collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout, waterCountForSection section: Int) -> Int
+
+根据返回的size计算宽高比，必须实现
 
 func collectionView (_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,
 sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize
@@ -102,6 +105,10 @@ minimumItemSpacingForSection section: NSInteger) -> CGFloat
 func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
 minimumWaterSpacingForSection section: NSInteger) -> CGFloat
 
+流宽度，可选实现，如果没有实现根据contentInsets、minimumWaterSpacing、waterCount计算得来，返回YJCollectionAutoCGFloat当作未实现处理
+func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
+waterWidthForSection section: Int, at index: Int) -> CGFloat
+
 拖拽需要实现的方法
 extension ViewController: YJWaterLayoutMovable {
 	func enableMoveItem(_ layout: YJWaterFlowLayout) -> Bool {
@@ -115,9 +122,11 @@ func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPa
 YJCollectionSectionHeader  header的类型string
 YJCollectionSectionFooter  footer的类型string
 
-注意：
-每个属性的重新设置都会更新布局
-
+YJCollectionAutoInt: Int = 0
+YJCollectionAutoFloat: Float = 0
+YJCollectionAutoCGFloat: CGFloat = 0
+YJCollectionAutoSize: CGSize = CGSize.zero
+YJCollectionAutoInsets: UIEdgeInsets = UIEdgeInsets.zero
 
 ## Author
 

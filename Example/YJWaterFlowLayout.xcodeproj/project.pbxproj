@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5795DB531F04D3D600A14378 /* layout.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5795DB4F1F04D3D600A14378 /* layout.gif */; };
+		352E3F6C204F869800010712 /* movie.gif in Resources */ = {isa = PBXBuildFile; fileRef = 352E3F6B204F869700010712 /* movie.gif */; };
+		35355375204E717F00672D27 /* YJWaterFlowLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35355376204E717F00672D27 /* YJWaterFlowLayout.framework */; };
 		5795DB541F04D3D600A14378 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5795DB501F04D3D600A14378 /* ViewController.swift */; };
 		5795DB551F04D3D600A14378 /* WaterFlowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5795DB511F04D3D600A14378 /* WaterFlowCell.swift */; };
 		5795DB561F04D3D600A14378 /* WaterFlowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5795DB521F04D3D600A14378 /* WaterFlowCell.xib */; };
@@ -17,7 +18,6 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		BE5A858AD7A9112B5FE2419B /* Pods_YJWaterFlowLayout_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79D8541A38A68BCE60F6AAC /* Pods_YJWaterFlowLayout_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +35,9 @@
 		1C5B72D4AA05670C37B9ABB8 /* Pods-YJWaterFlowLayout_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YJWaterFlowLayout_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YJWaterFlowLayout_Tests/Pods-YJWaterFlowLayout_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		2181556B65F5CC8CB61A32EC /* Pods_YJWaterFlowLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YJWaterFlowLayout_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8C6979CB214419BB6D92D9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		352E3F6B204F869700010712 /* movie.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = movie.gif; sourceTree = "<group>"; };
+		35355376204E717F00672D27 /* YJWaterFlowLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YJWaterFlowLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		479326BCE5A82BDCC2CD51CC /* Pods-YJWaterFlowLayout_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YJWaterFlowLayout_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YJWaterFlowLayout_Example/Pods-YJWaterFlowLayout_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		5795DB4F1F04D3D600A14378 /* layout.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = layout.gif; sourceTree = "<group>"; };
 		5795DB501F04D3D600A14378 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5795DB511F04D3D600A14378 /* WaterFlowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFlowCell.swift; sourceTree = "<group>"; };
 		5795DB521F04D3D600A14378 /* WaterFlowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaterFlowCell.xib; sourceTree = "<group>"; };
@@ -60,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE5A858AD7A9112B5FE2419B /* Pods_YJWaterFlowLayout_Example.framework in Frameworks */,
+				35355375204E717F00672D27 /* YJWaterFlowLayout.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				5795DB4F1F04D3D600A14378 /* layout.gif */,
+				352E3F6B204F869700010712 /* movie.gif */,
 				5795DB501F04D3D600A14378 /* ViewController.swift */,
 				5795DB511F04D3D600A14378 /* WaterFlowCell.swift */,
 				5795DB521F04D3D600A14378 /* WaterFlowCell.xib */,
@@ -162,6 +163,7 @@
 		DD9EE98428D16AC382E89077 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				35355376204E717F00672D27 /* YJWaterFlowLayout.framework */,
 				E79D8541A38A68BCE60F6AAC /* Pods_YJWaterFlowLayout_Example.framework */,
 				2181556B65F5CC8CB61A32EC /* Pods_YJWaterFlowLayout_Tests.framework */,
 			);
@@ -257,11 +259,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5795DB531F04D3D600A14378 /* layout.gif in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				5795DB561F04D3D600A14378 /* WaterFlowCell.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				352E3F6C204F869800010712 /* movie.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

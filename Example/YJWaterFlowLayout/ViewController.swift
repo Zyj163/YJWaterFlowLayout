@@ -14,27 +14,36 @@ struct ItemLayout: YJWaterLayoutModelable {
 }
 
 class ViewController: UIViewController {
-    
     fileprivate var collectionView: UICollectionView?
     var datas: [YJWaterLayoutModelable] = [YJWaterLayoutModelable]()
     
     @IBAction func switchHeader(_ sender: UIButton) {
         let layout = collectionView!.collectionViewLayout as! YJWaterFlowLayout
         if layout.headerSize == CGSize.zero {
-            layout.headerSize = CGSize(width: 50, height: 50)
+            if layout.layoutDirection == .vertical {
+                layout.headerSize = CGSize(width: collectionView!.bounds.width, height: 50)
+            } else {
+                layout.headerSize = CGSize(width: 50, height: collectionView!.bounds.height)
+            }
         } else {
             layout.headerSize = CGSize.zero
         }
+        layout.invalidateLayout()
     }
     
     
     @IBAction func switchFooter(_ sender: UIButton) {
         let layout = collectionView!.collectionViewLayout as! YJWaterFlowLayout
         if layout.footerSize == CGSize.zero {
-            layout.footerSize = CGSize(width: 50, height: 50)
+            if layout.layoutDirection == .vertical {
+                layout.footerSize = CGSize(width: collectionView!.bounds.width, height: 50)
+            } else {
+                layout.footerSize = CGSize(width: 50, height: collectionView!.bounds.height)
+            }
         } else {
             layout.footerSize = CGSize.zero
         }
+        layout.invalidateLayout()
     }
     
     
@@ -43,9 +52,21 @@ class ViewController: UIViewController {
         if layout.layoutDirection == .vertical {
             collectionView?.bounds = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 300)
             layout.layoutDirection = .horizontal
+            if layout.headerSize != CGSize.zero {
+                layout.headerSize = CGSize(width: 50, height: collectionView!.bounds.height)
+            }
+            if layout.footerSize != CGSize.zero {
+                layout.footerSize = CGSize(width: 50, height: collectionView!.bounds.height)
+            }
         } else {
             collectionView?.bounds = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height * 0.7)
             layout.layoutDirection = .vertical
+            if layout.headerSize != CGSize.zero {
+                layout.headerSize = CGSize(width: collectionView!.bounds.width, height: 50)
+            }
+            if layout.footerSize != CGSize.zero {
+                layout.footerSize = CGSize(width: collectionView!.bounds.width, height: 50)
+            }
         }
     }
     
@@ -58,12 +79,8 @@ class ViewController: UIViewController {
 		}
 		
         let layout = YJWaterFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 26, left: 8, bottom: 8, right: 8)
-        layout.headerSize = CGSize.zero
-        layout.footerSize = CGSize.zero
         layout.delegate = self
-		layout.moveAction = self
-		layout.waterCount = 2
+        layout.moveAction = self
 		
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 24, width: view.bounds.size.width, height: view.bounds.size.height * 0.7), collectionViewLayout: layout)
         collectionView?.backgroundColor = UIColor.green
@@ -78,14 +95,64 @@ class ViewController: UIViewController {
 		
 		
     }
-
 }
 
 extension ViewController: YJWaterLayoutDelegate {
+    
 	func collectionView (_ collectionView: UICollectionView,layout collectionViewLayout: YJWaterFlowLayout,
-	                     sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
-		return CGSize(width: 100, height: datas[indexPath.item].size.height)
+	                     ratioForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+        switch indexPath.section {
+        case 0:
+            return CGSize(width: 100, height: datas[indexPath.item].size.height)
+        case 1, 2:
+            return CGSize(width: 100, height: 100)
+        case 3:
+            let realWidth = collectionView.bounds.width - 200
+            switch indexPath.item {
+            case 0:
+                return CGSize(width: 200, height: 200)
+            case 1:
+                return CGSize(width: realWidth, height: 150)
+            case 2:
+                return CGSize(width: realWidth, height: 50)
+            default:
+                return CGSize(width: 100, height: 100)
+            }
+        default:
+            return CGSize(width: 100, height: 100)
+        }
 	}
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout, waterCountForSection section: Int) -> Int {
+        switch section {
+        case 0, 1, 3:
+            return 2
+        case 2:
+            return 3
+        case 4:
+            return 1
+        default:
+            return 2
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout, waterWidthForSection section: Int, at index: Int) -> CGFloat {
+        switch section {
+        case 3:
+            return index == 0 ? 200 : collectionView.bounds.width - 200
+        default:
+            return YJCollectionAutoCGFloat
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
+                         minimumWaterSpacingForSection section: Int) -> CGFloat {
+        return section == 3 ? 0 : 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout, minimumItemSpacingForSection section: Int) -> CGFloat {
+        return section == 3 ? 0 : 10
+    }
 }
 
 
@@ -99,18 +166,34 @@ extension ViewController: YJWaterLayoutMovable {
 }
 
 extension ViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 5
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return datas.count
+        switch section {
+        case 0:
+            return datas.count
+        case 1:
+            return 4
+        case 2:
+            return 9
+        case 3:
+            return 3
+        default:
+            return 1
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! WaterFlowCell
-        cell.textLabel.text = "\(datas[indexPath.item].size.height * 2): \(indexPath.item)"
+        cell.textLabel.text = "section:\(indexPath.section)-item:\(indexPath.item)"
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-		print(sourceIndexPath.item, destinationIndexPath.item)
 		if #available(iOS 9.0, *) {
 			(collectionView.collectionViewLayout as! YJWaterFlowLayout).moveItem(&datas, moveItemAt: sourceIndexPath, to: destinationIndexPath)
 		}

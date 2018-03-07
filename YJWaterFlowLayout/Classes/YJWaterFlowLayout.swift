@@ -16,37 +16,38 @@ fileprivate func - (left: CGSize, right: CGSize) ->CGSize {
     return CGSize(width: left.width - right.width, height: left.height - right.height)
 }
 
-@objc public protocol YJWaterLayoutDelegate: UICollectionViewDelegate, UICollectionViewDataSource {
+@objc public protocol YJWaterLayoutDelegate: NSObjectProtocol {
     
-    //itemSize大小，必须实现
+    //itemSize宽高比，必须实现
     func collectionView (_ collectionView: UICollectionView,layout collectionViewLayout: YJWaterFlowLayout,
-                         sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize
+                         ratioForItemAtIndexPath indexPath: IndexPath) -> CGSize
+
     //流条数
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout, waterCountForSection section: Int) -> Int
     
     //头视图大小
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
-                                        sizeForHeaderInSection section: Int) -> CGSize
+                         sizeForHeaderInSection section: Int) -> CGSize
     
     //脚视图大小
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
-                                        sizeForFooterInSection section: Int) -> CGSize
+                         sizeForFooterInSection section: Int) -> CGSize
     
     //内边距
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
-                                        insetForSectionAtIndex section: Int) -> UIEdgeInsets
+                         insetForSectionAtIndex section: Int) -> UIEdgeInsets
     
     //同一流中item间距
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
-                                        minimumItemSpacingForSection section: Int) -> CGFloat
+                         minimumItemSpacingForSection section: Int) -> CGFloat
     
     //流间距
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
-                                        minimumWaterSpacingForSection section: Int) -> CGFloat
+                         minimumWaterSpacingForSection section: Int) -> CGFloat
     
     //流宽度
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
-                                        waterWidthForSection section: Int, at index: Int) -> CGFloat
+                         waterWidthForSection section: Int, at index: Int) -> CGFloat
 }
 
 public protocol YJWaterLayoutModelable {
@@ -69,53 +70,37 @@ public enum YJCollectionViewLayoutDirection : Int {
 
 public let YJCollectionSectionHeader = "YJCollectionSectionHeader"
 public let YJCollectionSectionFooter = "YJCollectionSectionFooter"
+public let YJCollectionAutoInt: Int = 0
+public let YJCollectionAutoFloat: Float = 0
+public let YJCollectionAutoCGFloat: CGFloat = 0
+public let YJCollectionAutoSize: CGSize = CGSize.zero
+public let YJCollectionAutoInsets: UIEdgeInsets = UIEdgeInsets.zero
+
 
 open class YJWaterFlowLayout: UICollectionViewLayout {
     
     //瀑布流的条数（优先级低于代理方法中的设置）
-    public var waterCount: Int = 2 {
-        didSet{
-            invalidateLayout()
-        }}
-    
+    public var waterCount: Int = 2
     //流间距（优先级低于代理方法中的设置）
-    public var minimumWaterSpacing: CGFloat = 10.0 {
-        didSet{
-            invalidateLayout()
-        }}
+    public var minimumWaterSpacing: CGFloat = 10.0
     
     //同一流中item间距（优先级低于代理方法中的设置）
-    public var minimumItemSpacing: CGFloat = 10.0 {
-        didSet{
-            invalidateLayout()
-        }}
+    public var minimumItemSpacing: CGFloat = 10.0
     
     //section头视图大小（优先级低于代理方法中的设置，并且如果是纵向布局，宽度固定为collectionView宽度，横向亦然）
-    public var headerSize: CGSize = CGSize.zero {
-        didSet{
-            invalidateLayout()
-        }}
+    public var headerSize: CGSize = CGSize.zero
     
     //section脚视图大小（优先级低于代理方法中的设置，并且如果是纵向布局，宽度固定为collectionView宽度，横向亦然）
-    public var footerSize: CGSize = CGSize.zero {
-        didSet{
-            invalidateLayout()
-        }}
+    public var footerSize: CGSize = CGSize.zero
     
     //section内边距（优先级低于代理方法中的设置）
-    public var sectionInset: UIEdgeInsets = UIEdgeInsetsMake(2, 2, 2, 2) {
-        didSet{
-            invalidateLayout()
-        }}
+    public var sectionInset: UIEdgeInsets = UIEdgeInsets.zero
     
     //流动方向
-    public var layoutDirection: YJCollectionViewLayoutDirection = .vertical {
-        didSet{
-            invalidateLayout()
-        }}
+    public var layoutDirection: YJCollectionViewLayoutDirection = .vertical
     
     //批量布局个数
-    public var unionSize = 20
+    public var unionSize = 15
     
     //代理
     public weak var delegate: YJWaterLayoutDelegate?
@@ -146,8 +131,6 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
     fileprivate var headerAttributes = [Int : UICollectionViewLayoutAttributes]()
     fileprivate var footerAttributes = [Int : UICollectionViewLayoutAttributes]()
     fileprivate var unionRects = [CGRect]()
-    
-    fileprivate var waterWidth: CGFloat = 0.0
     
     @available(iOS 9.0, *)
     fileprivate lazy var longGes: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture(_:)))
@@ -195,16 +178,23 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
             miniItemSpaces[section] = delegate?.collectionView?(collectionView, layout: self, minimumItemSpacingForSection: section) ?? self.minimumItemSpacing
             miniWaterSpaces[section] = delegate?.collectionView?(collectionView, layout: self, minimumWaterSpacingForSection: section) ?? self.minimumWaterSpacing
             
-            let insets = delegate?.collectionView?(collectionView, layout: self, insetForSectionAtIndex: section) ?? sectionInset
-            sectionInsets[section] = insets
+            sectionInsets[section] = delegate?.collectionView?(collectionView, layout: self, insetForSectionAtIndex: section) ?? sectionInset
             
-            let count = delegate?.collectionView?(collectionView, layout: self, waterCountForSection: section) ?? waterCount
-            waterCounts[section] = count
+            if let count = delegate?.collectionView?(collectionView, layout: self, waterCountForSection: section), count > 0 {
+                waterCounts[section] = count
+            } else {
+                waterCounts[section] = waterCount
+            }
             
             var idx = 0
-            while idx < count {
+            while idx < waterCounts[section]! {
                 itemSizes.append(CGSize.zero)
-                widths[idx] = delegate?.collectionView?(collectionView, layout: self, waterWidthForSection: section, at: idx) ?? getWaterWidth(section: section, index: idx)
+                if let w = delegate?.collectionView?(collectionView, layout: self, waterWidthForSection: section, at: idx), w > 0 {
+                    widths[idx] = w
+                } else {
+                    widths[idx] = getWaterWidth(section: section, index: idx)
+                }
+                print(widths)
                 idx += 1
             }
             allItemSizes[section] = itemSizes
@@ -246,8 +236,7 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
         guard let itemSizes = allItemSizes[numberOfSections - 1] else {
             return CGSize.zero
         }
-        let miniItemSpace = miniItemSpaces[numberOfSections - 1]!
-        return layoutDirection == .vertical ? itemSizes[longest] - (footerAttributes.count == 0 ? CGSize(width: 0, height: miniItemSpace) : CGSize.zero) : itemSizes[longest] - (footerAttributes.count == 0 ? CGSize(width: miniItemSpace, height: 0) : CGSize.zero)
+        return layoutDirection == .vertical ? CGSize(width: collectionView!.bounds.width, height: itemSizes[longest].height) : CGSize(width: itemSizes[longest].width, height: collectionView!.bounds.height)
     }
     
     open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
@@ -362,7 +351,7 @@ extension YJWaterFlowLayout {
     
     fileprivate func layoutHeaders(totalSize size: inout CGSize, attributes: inout UICollectionViewLayoutAttributes, for section: Int) {
         
-        var headerSize: CGSize = delegate?.collectionView?(collectionView!, layout: self, sizeForHeaderInSection: section) ?? self.headerSize
+        let headerSize: CGSize = delegate?.collectionView?(collectionView!, layout: self, sizeForHeaderInSection: section) ?? self.headerSize
         
         let h = layoutDirection == .horizontal && headerSize.width > 0
         let v = layoutDirection == .vertical && headerSize.height > 0
@@ -370,11 +359,6 @@ extension YJWaterFlowLayout {
             attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: YJCollectionSectionHeader, with: IndexPath(item: 0, section: section))
             
             let x = h ? size.width : 0, y = v ? size.height : 0
-            if h {
-                headerSize.height = collectionView!.bounds.size.height
-            } else {
-                headerSize.width = collectionView!.bounds.size.width
-            }
             
             attributes.frame = CGRect(x: x, y: y, width: headerSize.width, height: headerSize.height)
             headerAttributes[section] = attributes
@@ -411,7 +395,7 @@ extension YJWaterFlowLayout {
             size.width = collectionView!.bounds.size.width
         }
         
-        var footerSize: CGSize = delegate?.collectionView?(collectionView!, layout: self, sizeForFooterInSection: section) ?? self.footerSize
+        let footerSize: CGSize = delegate?.collectionView?(collectionView!, layout: self, sizeForFooterInSection: section) ?? self.footerSize
         
         let h = layoutDirection == .horizontal && footerSize.width > 0
         let v = layoutDirection == .vertical && footerSize.height > 0
@@ -420,11 +404,6 @@ extension YJWaterFlowLayout {
             attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: YJCollectionSectionFooter, with: IndexPath(item: 0, section: section))
             
             let x = h ? size.width : 0, y = v ? size.height : 0
-            if h {
-                footerSize.height = collectionView!.bounds.size.height
-            } else {
-                footerSize.width = collectionView!.bounds.size.width
-            }
             
             attributes.frame = CGRect(x: x, y: y, width: footerSize.width, height: footerSize.height)
             footerAttributes[section] = attributes
@@ -458,9 +437,19 @@ extension YJWaterFlowLayout {
             
             let waterWidth = waterWidths[section]![index]!
             
-            let xOffset = layoutDirection == .vertical ? sectionInset.left + (waterWidth + minimumWaterSpacing) * CGFloat(index) : itemSizes[index].width + ((idx > 0 && itemSizes[index].width != preX) ? minimumItemSpacing : 0)
+            var preTotalWidth: CGFloat = 0
+            if index > 0 {
+                preTotalWidth = waterWidths[section]!.reduce(0, { (result, arg) -> CGFloat in
+                    if arg.0 >= index {
+                        return result
+                    }
+                    return result + arg.1
+                })
+            }
+            
+            let xOffset = layoutDirection == .vertical ? sectionInset.left + preTotalWidth + minimumWaterSpacing * CGFloat(index) : itemSizes[index].width + ((idx > 0 && itemSizes[index].width != preX) ? minimumItemSpacing : 0)
             preX = xOffset
-            let yOffset = layoutDirection == .vertical ? itemSizes[index].height + ((idx > 0 && itemSizes[index].height != preY) ? minimumItemSpacing : 0) : sectionInset.top + (waterWidth + minimumWaterSpacing) * CGFloat(index)
+            let yOffset = layoutDirection == .vertical ? itemSizes[index].height + ((idx > 0 && itemSizes[index].height != preY) ? minimumItemSpacing : 0) : sectionInset.top + preTotalWidth + minimumWaterSpacing * CGFloat(index)
             preY = yOffset
             
             var itemSize: CGSize?
@@ -472,10 +461,10 @@ extension YJWaterFlowLayout {
                     guard let _ = itemLayoutDatas else { return }
                     itemSize = itemLayoutDatas?[indexPath.item].size
                 } else {
-                    itemSize = delegate?.collectionView(collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
+                    itemSize = delegate?.collectionView(collectionView!, layout: self, ratioForItemAtIndexPath: indexPath)
                 }
             } else {
-                itemSize = delegate?.collectionView(collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
+                itemSize = delegate?.collectionView(collectionView!, layout: self, ratioForItemAtIndexPath: indexPath)
             }
             
             
