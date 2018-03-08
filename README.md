@@ -113,7 +113,7 @@ waterWidthForSection section: Int, at index: Int) -> CGFloat
 
 修改attributes，background/header/footer/item, kind为nil时为item，可选实现
 func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
-relocationForElement kind: String?, inSection section: Int, currentAttributes: UICollectionViewLayoutAttributes)
+relocationForElement kind: String?, currentAttributes: UICollectionViewLayoutAttributes)
 
 拖拽需要实现的方法
 extension ViewController: YJWaterLayoutMovable {
