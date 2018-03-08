@@ -81,6 +81,7 @@ class ViewController: UIViewController {
         let layout = YJWaterFlowLayout()
         layout.delegate = self
         layout.moveAction = self
+        layout.hasSectionBackground = true
 		
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 24, width: view.bounds.size.width, height: view.bounds.size.height * 0.7), collectionViewLayout: layout)
         collectionView?.backgroundColor = UIColor.green

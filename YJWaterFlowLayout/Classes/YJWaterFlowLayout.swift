@@ -21,6 +21,10 @@ fileprivate func - (left: CGSize, right: CGSize) ->CGSize {
     //itemSize宽高比，必须实现
     func collectionView (_ collectionView: UICollectionView,layout collectionViewLayout: YJWaterFlowLayout,
                          ratioForItemAtIndexPath indexPath: IndexPath) -> CGSize
+    
+    //是否含有background
+    @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
+                                        hasBackgroundInSection section: Int) -> Bool
 
     //流条数
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout, waterCountForSection section: Int) -> Int
@@ -81,11 +85,14 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
     //同一流中item间距（优先级低于代理方法中的设置）
     public var minimumItemSpacing: CGFloat = 10.0
     
-    //section头视图大小（优先级低于代理方法中的设置，并且如果是纵向布局，宽度固定为collectionView宽度，横向亦然）
+    //section头视图大小（优先级低于代理方法中的设置）
     public var headerSize: CGSize = CGSize.zero
     
-    //section脚视图大小（优先级低于代理方法中的设置，并且如果是纵向布局，宽度固定为collectionView宽度，横向亦然）
+    //section脚视图大小（优先级低于代理方法中的设置）
     public var footerSize: CGSize = CGSize.zero
+    
+    //是否包含section背景图（优先级低于代理方法的设置）
+    public var hasSectionBackground: Bool = false
     
     //section内边距（优先级低于代理方法中的设置）
     public var sectionInset: UIEdgeInsets = UIEdgeInsets.zero
@@ -452,7 +459,7 @@ extension YJWaterFlowLayout {
         let sectionInset = sectionInsets[section]!
         var preX: CGFloat = 0
         var preY: CGFloat = 0
-        let backgroundAttr = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: YJCollectionSectionBackground, with: IndexPath(item: 0, section: section))
+        
         let nextIdx = allItemAttributes.count
         for idx in 0..<itemCount {
             let indexPath = IndexPath(item: idx, section: section)
@@ -510,14 +517,18 @@ extension YJWaterFlowLayout {
             allItemSizes[section] = itemSizes
         }
         if let firstItemAttr = itemAttributes.first {
-            backgroundAttr.frame.origin.x = firstItemAttr.frame.minX
-            backgroundAttr.frame.origin.y = firstItemAttr.frame.minY
-            backgroundAttr.frame.size.width = layoutDirection == .vertical ? collectionView!.bounds.size.width - sectionInset.left - sectionInset.right : itemSizes[longestIndex(section: section)].width - firstItemAttr.frame.minX
-            backgroundAttr.frame.size.height = layoutDirection == .horizontal ? collectionView!.bounds.size.height - sectionInset.top - sectionInset.bottom : itemSizes[longestIndex(section: section)].height - firstItemAttr.frame.minY
-            backgroundAttr.zIndex = 0
-            delegate?.collectionView?(collectionView!, layout: self, relocationForElement: YJCollectionSectionBackground, inSection: section, currentAttributes: backgroundAttr)
-            backgroundAttributes[section] = backgroundAttr
-            allItemAttributes.insert(backgroundAttr, at: nextIdx)
+            let hasBackground = delegate?.collectionView?(collectionView!, layout: self, hasBackgroundInSection: section) ?? hasSectionBackground
+            if hasBackground {
+                let backgroundAttr = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: YJCollectionSectionBackground, with: IndexPath(item: 0, section: section))
+                backgroundAttr.frame.origin.x = firstItemAttr.frame.minX
+                backgroundAttr.frame.origin.y = firstItemAttr.frame.minY
+                backgroundAttr.frame.size.width = layoutDirection == .vertical ? collectionView!.bounds.size.width - sectionInset.left - sectionInset.right : itemSizes[longestIndex(section: section)].width - firstItemAttr.frame.minX
+                backgroundAttr.frame.size.height = layoutDirection == .horizontal ? collectionView!.bounds.size.height - sectionInset.top - sectionInset.bottom : itemSizes[longestIndex(section: section)].height - firstItemAttr.frame.minY
+                backgroundAttr.zIndex = 0
+                delegate?.collectionView?(collectionView!, layout: self, relocationForElement: YJCollectionSectionBackground, inSection: section, currentAttributes: backgroundAttr)
+                backgroundAttributes[section] = backgroundAttr
+                allItemAttributes.insert(backgroundAttr, at: nextIdx)
+            }
         }
         
         

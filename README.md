@@ -40,13 +40,17 @@ minimumItemSpacing
 
 headerSize
 
-section头视图大小，默认没有（优先级低于代理方法中的设置，并且如果是纵向布局，宽度固定为collectionView宽度，横向亦然）
+section头视图大小，默认没有（优先级低于代理方法中的设置）
 
 
 footerSize
 
-section脚视图大小，默认没有（优先级低于代理方法中的设置，并且如果是纵向布局，宽度固定为collectionView宽度，横向亦然）
+section脚视图大小，默认没有（优先级低于代理方法中的设置）
 
+
+hasSectionBackground
+
+是否包含section背景图，默认没有（优先级低于代理方法的设置）
 
 sectionInset
 
@@ -69,6 +73,10 @@ moveAction 拖拽代理
 
 流条数，可选实现，如果没有实现，使用属性waterCount，返回<=0当作未实现处理
 unc collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout, waterCountForSection section: Int) -> Int
+
+是否含有background，可选实现
+func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
+hasBackgroundInSection section: Int) -> Bool
 
 根据返回的size计算宽高比，必须实现
 
