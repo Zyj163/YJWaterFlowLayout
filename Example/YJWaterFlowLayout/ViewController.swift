@@ -142,7 +142,7 @@ extension ViewController: YJWaterLayoutDelegate {
         case 3:
             return index == 0 ? 200 : collectionView.bounds.width - 200
         default:
-            return YJCollectionAutoCGFloat
+            return 0
         }
     }
 

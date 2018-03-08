@@ -67,7 +67,7 @@ delegate  代理
 moveAction 拖拽代理
 
 
-流条数，可选实现，如果没有实现，使用属性waterCount，返回YJCollectionAutoInt当作未实现处理
+流条数，可选实现，如果没有实现，使用属性waterCount，返回<=0当作未实现处理
 unc collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout, waterCountForSection section: Int) -> Int
 
 根据返回的size计算宽高比，必须实现
@@ -76,16 +76,9 @@ func collectionView (_ collectionView: UICollectionView,layout collectionViewLay
 sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize
 
 
-返回section对应header的size，可选实现，如果没有实现，使用属性headerSize
-
-func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-sizeForHeaderInSection section: NSInteger) -> CGSize
-
-
-返回section对应footer的size，可选实现，如果没有实现，使用属性footerSize
-
-func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-sizeForFooterInSection section: NSInteger) -> CGSize
+头视图/脚视图大小，可选实现
+func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
+sizeForHeaderForFooterInSection section: Int, elementKind: String) -> CGSize
 
 
 返回section中内边距，可选实现，如果没有实现，使用属性sectionInset
@@ -105,9 +98,14 @@ minimumItemSpacingForSection section: NSInteger) -> CGFloat
 func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
 minimumWaterSpacingForSection section: NSInteger) -> CGFloat
 
-流宽度，可选实现，如果没有实现根据contentInsets、minimumWaterSpacing、waterCount计算得来，返回YJCollectionAutoCGFloat当作未实现处理
+流宽度，可选实现，如果没有实现根据contentInsets、minimumWaterSpacing、waterCount计算得来，返回<=0当作未实现处理
 func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
 waterWidthForSection section: Int, at index: Int) -> CGFloat
+
+
+修改attributes，background/header/footer/item, kind为nil时为item，可选实现
+func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
+relocationForElement kind: String?, inSection section: Int, currentAttributes: UICollectionViewLayoutAttributes)
 
 拖拽需要实现的方法
 extension ViewController: YJWaterLayoutMovable {
@@ -121,6 +119,8 @@ func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPa
 
 YJCollectionSectionHeader  header的类型string
 YJCollectionSectionFooter  footer的类型string
+YJCollectionSectionBackground  background的类型string
+以上三种类型用来替换系统提供的UICollectionElementKindSectionHeader等，用法相同，具体可查看demo
 
 YJCollectionAutoInt: Int = 0
 YJCollectionAutoFloat: Float = 0

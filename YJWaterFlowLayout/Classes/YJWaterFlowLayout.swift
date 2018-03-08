@@ -25,13 +25,9 @@ fileprivate func - (left: CGSize, right: CGSize) ->CGSize {
     //流条数
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout, waterCountForSection section: Int) -> Int
     
-    //头视图大小
+    //头视图/脚视图大小
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
-                         sizeForHeaderInSection section: Int) -> CGSize
-    
-    //脚视图大小
-    @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
-                         sizeForFooterInSection section: Int) -> CGSize
+                                        sizeForHeaderForFooterInSection section: Int, elementKind: String) -> CGSize
     
     //内边距
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
@@ -49,9 +45,9 @@ fileprivate func - (left: CGSize, right: CGSize) ->CGSize {
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
                          waterWidthForSection section: Int, at index: Int) -> CGFloat
     
-    //流宽度
+    //修改attributes，background/header/footer/item, kind为nil时为item
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
-                                        relocationBackgroundForSection section: Int, currentFrame: CGRect) -> CGRect
+                                        relocationForElement kind: String?, inSection section: Int, currentAttributes: UICollectionViewLayoutAttributes)
 }
 
 public protocol YJWaterLayoutModelable {
@@ -71,17 +67,9 @@ public enum YJCollectionViewLayoutDirection : Int {
     case horizontal
 }
 
-
 public let YJCollectionSectionHeader = "YJCollectionSectionHeader"
 public let YJCollectionSectionFooter = "YJCollectionSectionFooter"
 public let YJCollectionSectionBackground = "YJCollectionSectionBackground"
-
-public let YJCollectionAutoInt: Int = 0
-public let YJCollectionAutoFloat: Float = 0
-public let YJCollectionAutoCGFloat: CGFloat = 0
-public let YJCollectionAutoSize: CGSize = CGSize.zero
-public let YJCollectionAutoInsets: UIEdgeInsets = UIEdgeInsets.zero
-
 
 open class YJWaterFlowLayout: UICollectionViewLayout {
     
@@ -381,7 +369,7 @@ extension YJWaterFlowLayout {
     
     fileprivate func layoutHeaders(totalSize size: inout CGSize, attributes: inout UICollectionViewLayoutAttributes, for section: Int) {
         
-        let headerSize: CGSize = delegate?.collectionView?(collectionView!, layout: self, sizeForHeaderInSection: section) ?? self.headerSize
+        let headerSize: CGSize = delegate?.collectionView?(collectionView!, layout: self, sizeForHeaderForFooterInSection: section, elementKind: YJCollectionSectionHeader) ?? self.headerSize
         
         let h = layoutDirection == .horizontal && headerSize.width > 0
         let v = layoutDirection == .vertical && headerSize.height > 0
@@ -392,6 +380,7 @@ extension YJWaterFlowLayout {
             
             attributes.frame = CGRect(x: x, y: y, width: headerSize.width, height: headerSize.height)
             attributes.zIndex = 2
+            delegate?.collectionView?(collectionView!, layout: self, relocationForElement: YJCollectionSectionHeader, inSection: section, currentAttributes: attributes)
             headerAttributes[section] = attributes
             allItemAttributes.append(attributes)
             
@@ -426,7 +415,7 @@ extension YJWaterFlowLayout {
             size.width = collectionView!.bounds.size.width
         }
         
-        let footerSize: CGSize = delegate?.collectionView?(collectionView!, layout: self, sizeForFooterInSection: section) ?? self.footerSize
+        let footerSize: CGSize = delegate?.collectionView?(collectionView!, layout: self, sizeForHeaderForFooterInSection: section, elementKind: YJCollectionSectionFooter) ?? self.footerSize
         
         let h = layoutDirection == .horizontal && footerSize.width > 0
         let v = layoutDirection == .vertical && footerSize.height > 0
@@ -438,6 +427,7 @@ extension YJWaterFlowLayout {
             
             attributes.frame = CGRect(x: x, y: y, width: footerSize.width, height: footerSize.height)
             attributes.zIndex = 2
+            delegate?.collectionView?(collectionView!, layout: self, relocationForElement: YJCollectionSectionFooter, inSection: section, currentAttributes: attributes)
             footerAttributes[section] = attributes
             allItemAttributes.append(attributes)
             
@@ -512,6 +502,7 @@ extension YJWaterFlowLayout {
             attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             attributes.frame = CGRect(x: xOffset, y: yOffset, width: layoutDirection == .vertical ? waterWidth : itemLength, height: layoutDirection == .vertical ? itemLength : waterWidth)
             attributes.zIndex = 1
+            delegate?.collectionView?(collectionView!, layout: self, relocationForElement: nil, inSection: section, currentAttributes: attributes)
             itemAttributes.append(attributes)
             allItemAttributes.append(attributes)
             
@@ -524,9 +515,7 @@ extension YJWaterFlowLayout {
             backgroundAttr.frame.size.width = layoutDirection == .vertical ? collectionView!.bounds.size.width - sectionInset.left - sectionInset.right : itemSizes[longestIndex(section: section)].width - firstItemAttr.frame.minX
             backgroundAttr.frame.size.height = layoutDirection == .horizontal ? collectionView!.bounds.size.height - sectionInset.top - sectionInset.bottom : itemSizes[longestIndex(section: section)].height - firstItemAttr.frame.minY
             backgroundAttr.zIndex = 0
-            if let reloaction = delegate?.collectionView?(collectionView!, layout: self, relocationBackgroundForSection: section, currentFrame: backgroundAttr.frame) {
-                backgroundAttr.frame = reloaction
-            }
+            delegate?.collectionView?(collectionView!, layout: self, relocationForElement: YJCollectionSectionBackground, inSection: section, currentAttributes: backgroundAttr)
             backgroundAttributes[section] = backgroundAttr
             allItemAttributes.insert(backgroundAttr, at: nextIdx)
         }
