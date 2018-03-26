@@ -18,14 +18,14 @@ fileprivate func - (left: CGSize, right: CGSize) ->CGSize {
 
 @objc public protocol YJWaterLayoutDelegate: UICollectionViewDataSource,  UICollectionViewDelegate {
     
-    //itemSize宽高比，必须实现
-    func collectionView (_ collectionView: UICollectionView,layout collectionViewLayout: YJWaterFlowLayout,
-                         ratioForItemAtIndexPath indexPath: IndexPath) -> CGSize
+    //itemSize宽高比
+    @objc optional func collectionView (_ collectionView: UICollectionView,layout collectionViewLayout: YJWaterFlowLayout,
+                                        ratioForItemAtIndexPath indexPath: IndexPath) -> CGSize
     
     //是否含有background
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
                                         hasBackgroundInSection section: Int) -> Bool
-
+    
     //流条数
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout, waterCountForSection section: Int) -> Int
     
@@ -35,19 +35,19 @@ fileprivate func - (left: CGSize, right: CGSize) ->CGSize {
     
     //内边距
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
-                         insetForSectionAtIndex section: Int) -> UIEdgeInsets
+                                        insetForSectionAtIndex section: Int) -> UIEdgeInsets
     
     //同一流中item间距
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
-                         minimumItemSpacingForSection section: Int) -> CGFloat
+                                        minimumItemSpacingForSection section: Int) -> CGFloat
     
     //流间距
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
-                         minimumWaterSpacingForSection section: Int) -> CGFloat
+                                        minimumWaterSpacingForSection section: Int) -> CGFloat
     
     //流宽度
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
-                         waterWidthForSection section: Int, at index: Int) -> CGFloat
+                                        waterWidthForSection section: Int, at index: Int) -> CGFloat
     
     //修改attributes，background/header/footer/item, kind为nil时为item
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: YJWaterFlowLayout,
@@ -77,6 +77,7 @@ public let YJCollectionSectionBackground = "YJCollectionSectionBackground"
 
 open class YJWaterFlowLayout: UICollectionViewLayout {
     
+    public var itemRatio: CGSize = CGSize(width: 50, height: 50)
     //瀑布流的条数（优先级低于代理方法中的设置）
     public var waterCount: Int = 2
     //流间距（优先级低于代理方法中的设置）
@@ -154,6 +155,7 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
         }
     }
     
+    //有bug
     open func asyncPrepare(_ completeHandler: (()->())?) {
         DispatchQueue.global().async {
             self.async = true
@@ -182,12 +184,12 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
             return
         }
         
+        reset()
+        
         let numberOfSections = collectionView.numberOfSections
         if numberOfSections == 0 {
             return
         }
-        
-        reset()
         
         var size: CGSize = CGSize.zero
         var attributes = UICollectionViewLayoutAttributes()
@@ -216,7 +218,6 @@ open class YJWaterFlowLayout: UICollectionViewLayout {
                 } else {
                     widths[idx] = getWaterWidth(section: section, index: idx)
                 }
-                print(widths)
                 idx += 1
             }
             allItemSizes[section] = itemSizes
@@ -365,9 +366,9 @@ extension YJWaterFlowLayout {
         var width: CGFloat = 0
         let sectionInset = sectionInsets[section]!
         if layoutDirection == .vertical {
-            width = collectionView!.bounds.size.width - sectionInset.left - sectionInset.right
+            width = collectionView!.bounds.size.width - sectionInset.left - sectionInset.right - collectionView!.contentInset.left - collectionView!.contentInset.right
         } else {
-            width = collectionView!.bounds.size.height - sectionInset.top - sectionInset.bottom
+            width = collectionView!.bounds.size.height - sectionInset.top - sectionInset.bottom - collectionView!.contentInset.top - collectionView!.contentInset.bottom
         }
         let waterCount = waterCounts[section]!
         let spaceWaterCount = CGFloat(waterCount - 1)
@@ -492,10 +493,10 @@ extension YJWaterFlowLayout {
                     guard let _ = itemLayoutDatas else { return }
                     itemSize = itemLayoutDatas?[indexPath.item].size
                 } else {
-                    itemSize = delegate?.collectionView(collectionView!, layout: self, ratioForItemAtIndexPath: indexPath)
+                    itemSize = delegate?.collectionView?(collectionView!, layout: self, ratioForItemAtIndexPath: indexPath) ?? itemRatio
                 }
             } else {
-                itemSize = delegate?.collectionView(collectionView!, layout: self, ratioForItemAtIndexPath: indexPath)
+                itemSize = delegate?.collectionView?(collectionView!, layout: self, ratioForItemAtIndexPath: indexPath) ?? itemRatio
             }
             
             
@@ -536,18 +537,18 @@ extension YJWaterFlowLayout {
     }
     
     fileprivate func reset() {
-        headerAttributes.removeAll(keepingCapacity: true)
-        footerAttributes.removeAll(keepingCapacity: true)
-        unionRects.removeAll(keepingCapacity: true)
-        allItemSizes.removeAll(keepingCapacity: true)
-        waterWidths.removeAll(keepingCapacity: true)
-        miniItemSpaces.removeAll(keepingCapacity: true)
-        miniWaterSpaces.removeAll(keepingCapacity: true)
-        waterCounts.removeAll(keepingCapacity: true)
-        sectionInsets.removeAll(keepingCapacity: true)
+        headerAttributes.removeAll(keepingCapacity: false)
+        footerAttributes.removeAll(keepingCapacity: false)
+        unionRects.removeAll(keepingCapacity: false)
+        allItemSizes.removeAll(keepingCapacity: false)
+        waterWidths.removeAll(keepingCapacity: false)
+        miniItemSpaces.removeAll(keepingCapacity: false)
+        miniWaterSpaces.removeAll(keepingCapacity: false)
+        waterCounts.removeAll(keepingCapacity: false)
+        sectionInsets.removeAll(keepingCapacity: false)
         allItemAttributes.removeAll(keepingCapacity: false)
-        sectionItemAttributes.removeAll(keepingCapacity: true)
-        backgroundAttributes.removeAll(keepingCapacity: true)
+        sectionItemAttributes.removeAll(keepingCapacity: false)
+        backgroundAttributes.removeAll(keepingCapacity: false)
         
         if #available(iOS 9.0, *) {
             if let enable = moveAction?.enableMoveItem(self) {
